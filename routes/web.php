@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CarsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,5 @@ Route::get('/dashboardAdmin', function(){
 Route::get('/dashboardUser', function(){
     return view('dashboardUser.index');
 })->middleware('auth', 'isUser');
+
+Route::resource('/dashboardAdmin/car', CarsController::class)->middleware('auth', 'isAdmin');
