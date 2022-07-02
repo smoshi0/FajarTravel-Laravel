@@ -21,11 +21,15 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'cobaLogin']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/logout', [RegisterController::class, 'logout']);
 
-Route::get('/dashboard', function(){
-    return view('dashboard.index');
-})->middleware('auth');
+Route::get('/dashboardAdmin', function(){
+    return view('dashboardAdmin.index');
+})->middleware('auth', 'isAdmin');
+
+Route::get('/dashboardUser', function(){
+    return view('dashboardUser.index');
+})->middleware('auth', 'isUser');

@@ -13,7 +13,10 @@
     </div>
     <div>
         <label for="password">Password</label>
-        <input type="text" name="password" id="username">
+        <input type="password" name="password" id="username">
     </div>
     <input type="submit">
 </form>
+<a href="/register">
+<button>Register</button>
+</a>
