@@ -9,4 +9,9 @@ class Car extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['pemesanan'];
+
+    public function pemesanan(){
+        return $this->hasOne(Pemesanan::class);
+    }
 }

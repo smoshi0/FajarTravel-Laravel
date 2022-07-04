@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mobil_id');
+            $table->foreignId('car_id');
             $table->string('nama');
             $table->string('no_tlp');
             $table->string('alamat');
             $table->string('tgl_awal');
             $table->string('tgl_akhir');
-            $table->string('tatal_hari');
+            $table->string('total_hari');
             $table->string('total_pembayaran');
             $table->timestamps();
         });

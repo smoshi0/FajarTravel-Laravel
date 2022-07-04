@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboardAdmin.pemesanan.index', [
+            'pemesanans' => Pemesanan::all()
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class PemesananController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboardAdmin.pemesanan.create', [
+            'mobils' => Car::all(),
+        ]);
     }
 
     /**
@@ -35,7 +40,20 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'car_id' => 'required',
+            'nama' => 'required',
+            'no_tlp' => 'required',
+            'alamat' => 'required',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
+            'total_hari' => 'required',
+            'total_pembayaran' => 'required',
+        ]);
+
+        Pemesanan::create($validated);
+
+        return redirect('/dashboardAdmin/pemesanan')->with('SuccessInput', 'Data Pemesanan Berhasil diinputkan');
     }
 
     /**

@@ -4,7 +4,7 @@
     
 <h3>Data Mobil</h3>
     @if (session()->has('SuccessInput'))
-      <div class="alert alert-danger alert-dismissible fade show col-lg-10" role="alert">
+      <div class="alert alert-primary alert-dismissible fade show col-lg-10" role="alert">
         {{ session('SuccessInput') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <title>Cars Page</title>
+    <title>Dashboard Admin Page</title>
+    
 </head>
 <body>
     <div class="container-fluid">
@@ -14,5 +15,7 @@
           </main>
         </div>
       </div>
+
+      
 </body>
 </html>
