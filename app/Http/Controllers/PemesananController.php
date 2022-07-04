@@ -75,7 +75,10 @@ class PemesananController extends Controller
      */
     public function edit(Pemesanan $pemesanan)
     {
-        //
+        return view('dashboardAdmin.pemesanan.edit', [
+            'pemesanans' => $pemesanan,
+            'mobils' => Car::all(),
+        ]);
     }
 
     /**
@@ -87,7 +90,22 @@ class PemesananController extends Controller
      */
     public function update(Request $request, Pemesanan $pemesanan)
     {
-        //
+        $rules = [
+            'car_id' => 'required',
+            'nama' => 'required',
+            'no_tlp' => 'required',
+            'alamat' => 'required',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
+            'total_hari' => 'required',
+            'total_pembayaran' => 'required',
+        ];
+
+        $validated = $request->validate($rules);
+
+        Pemesanan::Where('id', $pemesanan->id)->update($validated);
+
+        return redirect('/dashboardAdmin/pemesanan')->with('SuccessInput', 'Data Pemesanan Berhasil Diedit');
     }
 
     /**
@@ -98,6 +116,7 @@ class PemesananController extends Controller
      */
     public function destroy(Pemesanan $pemesanan)
     {
-        //
+        Pemesanan::destroy($pemesanan->id);
+        return redirect('/dashboardAdmin/pemesanan')->with('SuccessInput', 'Data Pemesanan Berhasil Dihapus');
     }
 }

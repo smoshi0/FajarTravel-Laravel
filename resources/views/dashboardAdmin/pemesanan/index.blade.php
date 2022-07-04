@@ -38,7 +38,7 @@
         <td>{{ $pemesanan->tgl_awal }}</td>
         <td>{{ $pemesanan->tgl_akhir }}</td>
         <td>{{ $pemesanan->total_hari }}</td>
-        <td>{{ $pemesanan->total_pembayaran }}</td>
+        <td>Rp {{ number_format($pemesanan->total_pembayaran) }}</td>
         <td>
         <a href="/dashboardAdmin/pemesanan/{{ $pemesanan->id }}/edit">
             <button class="btn btn-warning btn-sm">Edit</button>
@@ -50,6 +50,7 @@
         </form>
         </td>
     </tr>
+        
     @endforeach
 </tbody>
 </table>
