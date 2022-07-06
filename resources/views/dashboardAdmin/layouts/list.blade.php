@@ -4,3 +4,6 @@
 <ul>
     <li><a href="/dashboardAdmin/pemesanan"><button>Data Pemesanan</button></a></li>
 </ul>
+<ul>
+    <li><a href="/dashboardAdmin/pembayaran"><button>Data Pembayaran</button></a></li>
+</ul>

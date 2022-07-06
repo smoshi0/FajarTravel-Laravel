@@ -9,6 +9,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
+
+      @if (session()->has('gagalHapus'))
+      <script>
+        alert("{{ session('gagalHapus') }}");
+      </script>
+      @endif
 <a href="/dashboardAdmin/car/create">
     <button>Input</button>
 </a>

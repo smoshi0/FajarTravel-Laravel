@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
 class CarsController extends Controller
@@ -107,7 +108,13 @@ class CarsController extends Controller
      */
     public function destroy(Car $car)
     {
-        Car::destroy($car->id);
-        return redirect('/dashboardAdmin/car')->with('SuccessInput', 'Data Mobil Berhasil Dihapus');
+        $mobil_id = Pemesanan::Where('car_id', '=', $car->id)->first();
+        if ($mobil_id) {
+            return redirect('/dashboardAdmin/car')->with('gagalHapus', 'Data Mobil Tidak Bisa Dihapus');
+        } else {
+            Car::destroy($car->id);
+            return redirect('/dashboardAdmin/car')->with('succesDelete', 'Data Mobil Berhasil Dihapus');
+            
+        }
     }
 }

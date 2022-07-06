@@ -15,4 +15,8 @@ class Pemesanan extends Model
     {
         return $this->belongsTo(Car::class);
     }
+
+    public function pembayaran(){
+        return $this->hasOne(Pembayaran::class);
+    }
 }
