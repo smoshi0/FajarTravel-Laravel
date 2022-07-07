@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_mobil');
             $table->string('jenis_bbm');
             $table->string('harga_sewa');
+            $table->string('status')->default('idle');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('car_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nama');
             $table->string('no_tlp');
             $table->string('alamat');

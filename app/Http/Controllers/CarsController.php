@@ -87,9 +87,10 @@ class CarsController extends Controller
             'nama_mobil' => 'required',
             'jenis_bbm' => 'required',
             'harga_sewa' => 'required',
+            'status' => 'required',
         ]);
 
-        if($request->no_plat != $car->no_plat){
+        if ($request->no_plat != $car->no_plat) {
             $rules['no_plat'] = 'required|unique:cars';
         }
 
@@ -114,7 +115,6 @@ class CarsController extends Controller
         } else {
             Car::destroy($car->id);
             return redirect('/dashboardAdmin/car')->with('succesDelete', 'Data Mobil Berhasil Dihapus');
-            
         }
     }
 }

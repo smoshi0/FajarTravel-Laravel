@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pemesanan_id');
+            $table->foreignId('pemesanan_id')->references('id')->on('pemesanans')->onDelete('cascade');
             $table->string('tgl_bayar');
             $table->string('bukti_transfer');
             $table->boolean('accept')->default(0);

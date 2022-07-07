@@ -21,6 +21,16 @@
             <label for="harga_sewa">Harga Sewa</label>
             <input type="text" name="harga_sewa" id="harga_sewa" value="{{ $cars->harga_sewa }}">
         </div>
+        <div>
+            <label for="harga_sewa">Status</label>
+            @if ($cars->status == 'idle')
+                <input type="radio" name="status" id="status" value="idle" checked> Idle
+                <input type="radio" name="status" id="status" value="booked"> Booked
+            @else
+                <input type="radio" name="status" id="status" value="idle"> Idle
+                <input type="radio" name="status" id="status" value="booked" checked> Booked
+            @endif
+        </div>
         <input type="submit">
     </form>
 @endsection

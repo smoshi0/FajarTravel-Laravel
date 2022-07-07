@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pembayaran;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
 {
@@ -15,7 +16,7 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        return view('dashboardAdmin.pembayaran.index',[
+        return view('dashboardAdmin.pembayaran.index', [
             'pembayarans' => Pembayaran::all()
         ]);
     }
@@ -27,7 +28,7 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        return view('dashboardAdmin.pembayaran.create',[
+        return view('dashboardAdmin.pembayaran.create', [
             'pembayarans' => Pembayaran::all(),
             'pemesanans' => Pemesanan::all(),
         ]);
@@ -41,11 +42,10 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validated = $request->validate([
             'pemesanan_id' => 'required',
             'tgl_bayar' => 'required',
-            'bukti_transfer' => 'required|image|file|max:1024',
+            'bukti_transfer' => 'required|image|file|max:2048',
         ]);
 
         if ($request->file('bukti_transfer')) {
@@ -54,7 +54,6 @@ class PembayaranController extends Controller
 
         Pembayaran::create($validated);
         return redirect('/dashboardAdmin/pembayaran')->with('SuccessInput', 'Data Pembayaran Berhasil diinputkan');
-
     }
 
     /**
@@ -76,7 +75,9 @@ class PembayaranController extends Controller
      */
     public function edit(Pembayaran $pembayaran)
     {
-        //
+        return view('dashboardAdmin.pembayaran.edit', [
+            'pembayarans' => $pembayaran,
+        ]);
     }
 
     /**
@@ -88,7 +89,25 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, Pembayaran $pembayaran)
     {
-        //
+        $rules = [
+            'pemesanan_id' => 'required',
+            'tgl_bayar' => 'required',
+            'bukti_transfer' => 'image|file|max:2048',
+            'accept' => 'required',
+        ];
+
+        $validated = $request->validate($rules);
+
+        if ($request->file('bukti_transfer')) {
+            if ($request->oldImg) {
+                Storage::delete($request->oldImg);
+            }
+            $validated['bukti_transfer'] = $request->file('bukti_transfer')->store('bukti-pembayaran');
+        }
+
+        Pembayaran::Where('id', $pembayaran->id)->update($validated);
+
+        return redirect('/dashboardAdmin/pembayaran')->with('SuccessInput', 'Data Pembayaran Berhasil Diedit');
     }
 
     /**
@@ -99,6 +118,11 @@ class PembayaranController extends Controller
      */
     public function destroy(Pembayaran $pembayaran)
     {
-        //
+        if ($pembayaran->bukti_transfer) {
+            Storage::delete($pembayaran->bukti_transfer);
+        }
+
+        Pembayaran::destroy($pembayaran->id);
+        return redirect('/dashboardAdmin/pembayaran')->with('SuccessInput', 'Data Pembayaran Berhasil Diedit');
     }
 }

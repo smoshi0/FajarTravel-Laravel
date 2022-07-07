@@ -42,6 +42,7 @@ class PemesananController extends Controller
     {
         $validated = $request->validate([
             'car_id' => 'required',
+            'user_id' => 'required',
             'nama' => 'required',
             'no_tlp' => 'required',
             'alamat' => 'required',
