@@ -39,6 +39,20 @@
                         </div>
                     @enderror
                 </div>
+                <div>
+                    <label for="harga_sewa">Status</label>
+                    @if ($pembayarans->accept == 'pending')
+                        <br>
+                        <input type="radio" name="accept" id="accept" value="pending" checked> Pending
+                        <br>
+                        <input type="radio" name="accept" id="accept" value="accept"> Accept
+                    @else
+                        <br>
+                        <input type="radio" name="accept" id="accept" value="pending"> Pending
+                        <br>
+                        <input type="radio" name="accept" id="accept" value="accept" checked> Accept
+                    @endif
+                </div>
                 <button type="submit">Edit</button>
             </form>
         </div>

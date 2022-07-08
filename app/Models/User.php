@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = ['id'];
+    protected $with = ['pemesanan'];
     // protected $fillable = [
     //     'name',
     //     'email',
@@ -42,4 +43,9 @@ class User extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+    public function pemesanan()
+    {
+        return $this->hasOne(Pemesanan::class);
+    }
 }

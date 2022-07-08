@@ -37,6 +37,9 @@
                             height="70px"></td>
                     <td>{{ $bayar->accept }}</td>
                     <td>
+                        <a href="/dashboardAdmin/pembayaran/{{ $bayar->id }}">
+                            <button class="btn btn-success btn-sm">Detail</button>
+                        </a>
                         <a href="/dashboardAdmin/pembayaran/{{ $bayar->id }}/edit">
                             <button class="btn btn-warning btn-sm">Edit</button>
                         </a>

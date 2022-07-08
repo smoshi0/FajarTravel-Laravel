@@ -46,6 +46,7 @@ class PembayaranController extends Controller
             'pemesanan_id' => 'required',
             'tgl_bayar' => 'required',
             'bukti_transfer' => 'required|image|file|max:2048',
+            'accept' => 'required',
         ]);
 
         if ($request->file('bukti_transfer')) {
@@ -64,7 +65,9 @@ class PembayaranController extends Controller
      */
     public function show(Pembayaran $pembayaran)
     {
-        //
+        return view('dashboardAdmin.pembayaran.show', [
+            'pembayarans' => $pembayaran
+        ]);
     }
 
     /**

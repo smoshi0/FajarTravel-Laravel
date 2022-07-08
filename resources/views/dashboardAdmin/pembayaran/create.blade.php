@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <form action="/dashboardAdmin/pembayaran" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="accept" id="accept" value="pending">
                 <div class="mb-3">
                     <label for="no_plat">Nama Pemesan</label>
                     <select name="pemesanan_id" id="pemesanan_id" class="form-select">
@@ -36,13 +37,11 @@
     </div>
     <script>
         function cekPemesanan() {
-            var kode = document.getElementById('kode_pembayaran');
             var a = document.getElementById("pemesanan_id").value;
             if (a == "" || a == null) {
                 alert("Mohon Isi Formulir Nama Pemesan");
                 return false;
             }
-            kode.value = "P0000"
         }
 
         function previewImg() {

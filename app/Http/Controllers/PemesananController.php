@@ -28,7 +28,7 @@ class PemesananController extends Controller
     public function create()
     {
         return view('dashboardAdmin.pemesanan.create', [
-            'mobils' => Car::all(),
+            'mobils' => Car::Where('status', '=', 'idle')->get(),
         ]);
     }
 
@@ -78,7 +78,7 @@ class PemesananController extends Controller
     {
         return view('dashboardAdmin.pemesanan.edit', [
             'pemesanans' => $pemesanan,
-            'mobils' => Car::all(),
+            'mobils' => Car::Where('status', '=', 'idle')->get(),
         ]);
     }
 

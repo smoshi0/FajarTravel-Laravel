@@ -16,7 +16,13 @@ class Pemesanan extends Model
         return $this->belongsTo(Car::class);
     }
 
-    public function pembayaran(){
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function pembayaran()
+    {
         return $this->hasOne(Pembayaran::class);
     }
 }

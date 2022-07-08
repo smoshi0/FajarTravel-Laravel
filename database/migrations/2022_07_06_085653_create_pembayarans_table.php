@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('pemesanan_id')->references('id')->on('pemesanans')->onDelete('cascade');
             $table->string('tgl_bayar');
             $table->string('bukti_transfer');
-            $table->boolean('accept')->default(0);
+            $table->string('accept')->default('pending');
             $table->timestamps();
         });
     }

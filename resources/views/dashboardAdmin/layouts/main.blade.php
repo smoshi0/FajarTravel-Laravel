@@ -13,7 +13,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <main class="col-md-8 col-lg-10 px-md-4">
+            <main class="col-md-12 col-lg-12 px-md-4">
                 @yield('container')
 
             </main>
