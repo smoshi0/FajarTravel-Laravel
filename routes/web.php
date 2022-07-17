@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\RegisterController;
@@ -33,9 +34,7 @@ Route::get('/dashboardAdmin', function(){
     return view('dashboardAdmin.index');
 })->middleware('auth', 'isAdmin');
 
-Route::get('/dashboardUser', function(){
-    return view('dashboardUser.index');
-})->middleware('auth', 'isUser');
+Route::resource('/dashboardUser', DashboardUserController::class)->middleware('auth', 'isUser');
 
 Route::resource('/dashboardAdmin/car', CarsController::class)->middleware('auth', 'isAdmin');
 Route::resource('/dashboardAdmin/pemesanan', PemesananController::class)->middleware('auth', 'isAdmin');
