@@ -30,11 +30,14 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboardAdmin', function(){
+Route::get('/dashboardAdmin', function () {
     return view('dashboardAdmin.index');
 })->middleware('auth', 'isAdmin');
 
-Route::resource('/dashboardUser', DashboardUserController::class)->middleware('auth', 'isUser');
+Route::get('/dashboardUser', [DashboardUserController::class, 'index'])->middleware('auth', 'isUser');
+Route::post('/dashboardUser', [DashboardUserController::class, 'storePemesanan'])->middleware('auth', 'isUser');
+Route::get('/dashboardUser/pemesanan/{id}', [DashboardUserController::class, 'createPemesanan'])->middleware('auth', 'isUser');
+Route::get('/dashboardUser/pemesanan', [DashboardUserController::class, 'pemesanan'])->middleware('auth', 'isUser');
 
 Route::resource('/dashboardAdmin/car', CarsController::class)->middleware('auth', 'isAdmin');
 Route::resource('/dashboardAdmin/pemesanan', PemesananController::class)->middleware('auth', 'isAdmin');

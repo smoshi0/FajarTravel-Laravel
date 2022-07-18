@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
 class DashboardUserController extends Controller
@@ -24,9 +25,12 @@ class DashboardUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createPemesanan($id)
     {
-        //
+        // return $id;
+        return view('dashboardUser.createPemesanan', [
+            'mobils' => Car::Where('id', '=', $id)->get(),
+        ]);
     }
 
     /**
@@ -35,9 +39,23 @@ class DashboardUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePemesanan(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'car_id' => 'required',
+            'user_id' => 'required',
+            'nama' => 'required',
+            'no_tlp' => 'required',
+            'alamat' => 'required',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
+            'total_hari' => 'required',
+            'total_pembayaran' => 'required',
+        ]);
+
+        Pemesanan::create($validated);
+
+        return redirect('/dashboardUser')->with('SuccessInput', 'Data Pemesanan Berhasil diinputkan');
     }
 
     /**
@@ -46,9 +64,11 @@ class DashboardUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function pemesanan()
     {
-        //
+        return view('dashboardUser.pemesanan', [
+            'pemesanans' => Pemesanan::Where('user_id', '=', auth()->user()->id)->get(),
+        ]);
     }
 
     /**
