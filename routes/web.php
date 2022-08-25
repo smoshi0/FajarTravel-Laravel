@@ -23,6 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/qr-code', function () {
+    return view('qrCode');
+});
+
+
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'cobaLogin']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -38,6 +43,9 @@ Route::get('/dashboardUser', [DashboardUserController::class, 'index'])->middlew
 Route::post('/dashboardUser', [DashboardUserController::class, 'storePemesanan'])->middleware('auth', 'isUser');
 Route::get('/dashboardUser/pemesanan/{id}', [DashboardUserController::class, 'createPemesanan'])->middleware('auth', 'isUser');
 Route::get('/dashboardUser/pemesanan', [DashboardUserController::class, 'pemesanan'])->middleware('auth', 'isUser');
+Route::get('/dashboardUser/pemesanan/{id}/edit', [DashboardUserController::class, 'editPemesanan'])->middleware('auth', 'isUser');
+Route::put('/dashboardUser/pemesanan/{id}', [DashboardUserController::class, 'update'])->middleware('auth', 'isUser');
+Route::delete('/dashboardUser/pemesanan/{id}', [DashboardUserController::class, 'destroy'])->middleware('auth', 'isUser');
 
 Route::resource('/dashboardAdmin/car', CarsController::class)->middleware('auth', 'isAdmin');
 Route::resource('/dashboardAdmin/pemesanan', PemesananController::class)->middleware('auth', 'isAdmin');

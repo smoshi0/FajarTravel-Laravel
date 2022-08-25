@@ -71,15 +71,12 @@ class DashboardUserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function editPemesanan($id)
     {
-        //
+        // return Pemesanan::Where('id', '=', $id)->first();
+        return view('dashboardUser.editPemesanan', [
+            'pemesanans' => Pemesanan::Where('id', '=', $id)->first(),
+        ]);
     }
 
     /**
@@ -91,7 +88,22 @@ class DashboardUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'car_id' => 'required',
+            'nama' => 'required',
+            'no_tlp' => 'required',
+            'alamat' => 'required',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
+            'total_hari' => 'required',
+            'total_pembayaran' => 'required',
+        ];
+
+        $validated = $request->validate($rules);
+
+        Pemesanan::Where('id', $id)->update($validated);
+
+        return redirect('/dashboardUser/pemesanan')->with('SuccessInput', 'Data Pemesanan Berhasil Diedit');
     }
 
     /**
@@ -102,6 +114,7 @@ class DashboardUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pemesanan::destroy($id);
+        return redirect('/dashboardUser/pemesanan')->with('SuccessInput', 'Data Pemesanan Berhasil Dihapus');
     }
 }

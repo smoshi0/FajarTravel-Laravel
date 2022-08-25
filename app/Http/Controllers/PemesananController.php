@@ -76,6 +76,7 @@ class PemesananController extends Controller
      */
     public function edit(Pemesanan $pemesanan)
     {
+        // return $pemesanan;
         return view('dashboardAdmin.pemesanan.edit', [
             'pemesanans' => $pemesanan,
             'mobils' => Car::Where('status', '=', 'idle')->get(),

@@ -15,6 +15,7 @@ class CarsController extends Controller
      */
     public function index()
     {
+        // return Car::all();
         return view('dashboardAdmin.car.index', [
             'cars' => Car::all()
         ]);

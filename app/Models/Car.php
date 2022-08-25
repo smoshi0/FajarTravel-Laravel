@@ -11,7 +11,8 @@ class Car extends Model
     protected $guarded = ['id'];
     protected $with = ['pemesanan'];
 
-    public function pemesanan(){
-        return $this->hasOne(Pemesanan::class);
+    public function pemesanan()
+    {
+        return $this->hasMany(Pemesanan::class);
     }
 }

@@ -66,4 +66,12 @@
             @endforeach
         </tbody>
     </table>
+    {{-- <div class="visible-print text-center">
+        <h1>Laravel 7 - QR Code Generator Example</h1>
+        {!! QrCode::size(500)->generate($cars[1]) !!}
+        <br>
+        <br>
+        <br>
+        <br>
+    </div> --}}
 @endsection
